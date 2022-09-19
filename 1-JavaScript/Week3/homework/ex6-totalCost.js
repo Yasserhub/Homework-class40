@@ -22,20 +22,35 @@ instead!
 -----------------------------------------------------------------------------*/
 const cartForParty = {
   // TODO complete this object
+  melk:1.75,
+  water:1.23,
+  tea:2,
+  chips:2.75,
+  egges:3.80
 };
 
-function calculateTotalPrice(/* TODO parameter(s) go here */) {
+function calculateTotalPrice(groceryObject) {
   // TODO replace this comment with your code
+  let values = Object.values(groceryObject);
+  let size = Object.keys(groceryObject).length;
+  let amount =0;
+  for (let i=0; i<size; i++)
+    {
+      amount=amount + values[i];
+      
+    }
+
+    return "Total: " + amount.toFixed(2);
 }
 
 // ! Test functions (plain vanilla JavaScript)
 function test1() {
-  console.log('\nTest 1: calculateTotalPrice should take one parameter');
+  console.log(calculateTotalPrice(cartForParty));
   // TODO replace this comment with your code
 }
 
 function test2() {
-  console.log('\nTest 2: return correct output when passed cartForParty');
+  console.log(calculateTotalPrice(cartForParty));
   // TODO replace this comment with your code
 }
 

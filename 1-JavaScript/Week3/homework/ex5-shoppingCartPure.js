@@ -15,16 +15,33 @@ it pure. Do the following:
    spread syntax.
 5. Confirm that you function passes the provided unit tests.
 ------------------------------------------------------------------------------*/
+
+const shoppingCart = ['bananas', 'milk'];
+
 // ! Function under test
-function addToShoppingCart(/* TODO parameter(s) go here */) {
-  // TODO complete this function
+function addToShoppingCart(cartArray,groceryItem) {
+  let copiedArray= [...cartArray];
+  if( typeof groceryItem !== 'undefined' ) { 
+    if (copiedArray.length<3){
+      copiedArray.push(groceryItem);
+    }
+    else{
+      copiedArray.shift();
+      copiedArray.push(groceryItem);
+    }
+  }
+
+  return copiedArray; 
 }
+
 
 // ! Test functions (plain vanilla JavaScript)
 function test1() {
   console.log('Test 1: addToShoppingCart should take two parameters');
+  let resultForTest1=addToShoppingCart(shoppingCart,'tea');
   console.assert(addToShoppingCart.length === 2);
 }
+
 
 function test2() {
   console.log('Test 2: addToShoppingCart should be a pure function');
