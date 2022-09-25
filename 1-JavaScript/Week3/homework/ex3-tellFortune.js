@@ -31,22 +31,21 @@ randomly select array elements four times inside the `tellFortune` function
 body, this code is now written once only in a separated function.
 -----------------------------------------------------------------------------*/
 
-// This function should take an array as its parameter and return
-// a randomly selected element as its return value.
+
 function selectRandomly(arrayParameter) {
-  let randomIndex = Math.floor(Math.random() * arrayParameter.length); 
-  let randomElement = arrayParameter[randomIndex];
+  const randomIndex = Math.floor(Math.random() * arrayParameter.length); 
+  const randomElement = arrayParameter[randomIndex];
   return randomElement;
 }
 
 function tellFortune(kindNum,partnerName,jobLocation,jobName) {
- // TODO complete this function
-   let kindNumber=selectRandomly(kindNum);
-   let nameYourPartenter=selectRandomly(partnerName);
-   let locationOfJob=selectRandomly(jobLocation);
-   let nameOfJob=selectRandomly(jobName); 
+ 
+   const kindNumber=selectRandomly(kindNum);
+   const nameYourPartner=selectRandomly(partnerName);
+   const locationOfJob=selectRandomly(jobLocation);
+   const nameOfJob=selectRandomly(jobName); 
 
-   return "You will be a " + nameOfJob + " in " + locationOfJob +", married to " + nameYourPartenter + " with " + kindNumber + " kids.";
+   return "You will be a " + nameOfJob + " in " + locationOfJob +", married to " + nameYourPartner + " with " + kindNumber + " kids.";
 
 }
 
@@ -56,15 +55,15 @@ function main() {
   ];
 
   const partnerNames = [
-    "Marjan", "Katrina","Suzan","Marim", "Sali"
+    "Lila", "Katrina","Suzan","MARY", "Madonna"
   ];
 
   const locations = [
-    "Amersfoort", "Amesterdam","Rotterdam","Den Haag", "Utrecht"
+    "Amersfoort", "Amsterdam","Rotterdam","London", "Utrecht"
   ];
 
   const jobTitles = [
-    "Teacher", "Web Developer", "Polic Officer", "Driver","Football player"
+    "Teacher", "Web Developer", "Officer", "Driver","Football player"
   ];
 
   console.log(tellFortune(numKids, partnerNames, locations, jobTitles));

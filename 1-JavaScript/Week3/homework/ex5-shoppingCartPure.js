@@ -16,11 +16,8 @@ it pure. Do the following:
 5. Confirm that you function passes the provided unit tests.
 ------------------------------------------------------------------------------*/
 
-const shoppingCart = ['bananas', 'milk'];
-
-// ! Function under test
 function addToShoppingCart(cartArray,groceryItem) {
-  let copiedArray= [...cartArray];
+  const copiedArray= [...cartArray];
   if( typeof groceryItem !== 'undefined' ) { 
     if (copiedArray.length<3){
       copiedArray.push(groceryItem);
@@ -35,18 +32,16 @@ function addToShoppingCart(cartArray,groceryItem) {
 }
 
 
-// ! Test functions (plain vanilla JavaScript)
+
 function test1() {
   console.log('Test 1: addToShoppingCart should take two parameters');
-  let resultForTest1=addToShoppingCart(shoppingCart,'tea');
   console.assert(addToShoppingCart.length === 2);
 }
 
 
 function test2() {
   console.log('Test 2: addToShoppingCart should be a pure function');
-  // A pure function should return the same result when called with
-  // identical arguments. It should also have no side effects (not tested here).
+
   const initialCart = ['bananas', 'milk'];
   const result1 = addToShoppingCart(initialCart, 'chocolate');
   const result2 = addToShoppingCart(initialCart, 'chocolate');

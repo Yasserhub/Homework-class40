@@ -21,18 +21,16 @@ instead!
 3. Complete the unit test functions and verify that all is working as expected.
 -----------------------------------------------------------------------------*/
 const cartForParty = {
-  // TODO complete this object
-  melk:1.75,
+  milk:1.75,
   water:1.23,
   tea:2,
   chips:2.75,
-  egges:3.80
+  eggs:3.80
 };
 
 function calculateTotalPrice(groceryObject) {
-  // TODO replace this comment with your code
-  let values = Object.values(groceryObject);
-  let size = Object.keys(groceryObject).length;
+  const values = Object.values(groceryObject);
+  const size = Object.keys(groceryObject).length;
   let amount =0;
   for (let i=0; i<size; i++)
     {
@@ -43,15 +41,12 @@ function calculateTotalPrice(groceryObject) {
     return "Total: " + amount.toFixed(2);
 }
 
-// ! Test functions (plain vanilla JavaScript)
 function test1() {
   console.log(calculateTotalPrice(cartForParty));
-  // TODO replace this comment with your code
 }
 
 function test2() {
   console.log(calculateTotalPrice(cartForParty));
-  // TODO replace this comment with your code
 }
 
 function test() {

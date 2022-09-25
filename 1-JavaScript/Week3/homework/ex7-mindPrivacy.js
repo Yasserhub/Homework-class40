@@ -29,22 +29,22 @@ const employeeRecords = [
   },
 ];
 
-// ! Function under test
-function filterPrivateData(employeeArray) {
-  // TODO complete this function
-  let newArray=[0];
 
-  for (const { name: n, occupation: j, email:e} of employeeArray) {
-      newArray.push({n,j,e});
+function filterPrivateData(employeeArray) {
+ 
+  const newArray=[];
+
+  for (const { name, occupation, email} of employeeArray) {
+      newArray.push({name,occupation,email});
 
   }
-  newArray.shift();
+  
   return newArray;
 }
 
-// ! Test functions (plain vanilla JavaScript)
+
 function test1() {
-  console.log(filterPrivateData(employeeRecords));
+  console.log('Test 1: filterPrivateData should take one parameters');
   console.assert(filterPrivateData.length === 1);
 }
 
@@ -62,7 +62,7 @@ function test2() {
       email: 'jane.eyre@somewhere.net',
     },
   ];
-  const result = filterPrivateData(filterPrivateData(employeeRecords));
+  const result = filterPrivateData(employeeRecords);
   console.assert(JSON.stringify(result) === JSON.stringify(expected));
 }
 
