@@ -32,11 +32,11 @@ const mondayTasks = [
 const hourlyRate = 25;
 
 function computeEarnings(tasks,hourlyRated) {
-  const costInMinute=hourlyRated/60; 
+  const costInMinute = hourlyRated /60 ; 
   
-   const amount=tasks.map(task=>task.duration*costInMinute).reduceRight(function(a,b){return a+b;});
+   const amount = tasks.map ( task => task.duration * costInMinute ).reduceRight( function(a,b) {return a+b;} );
 
- return  "€"+ amount.toFixed(2);
+ return  "€" + amount. toFixed ( 2 );
  
   
 }

@@ -24,10 +24,10 @@ const fruitBasket = [
   'watermelon',
   'lemon',
 ];
-const sanitizedBasket= ['apple','grapefruit','banana','watermelon'];
+const sanitizedBasket = ['apple','grapefruit','banana','watermelon'];
 // ! Function under test
 function sanitizeFruitBasket(fruitsArray,unwantedFruit) {
-  const sanitizedArray=fruitsArray.filter(fruitArray=> fruitArray!==unwantedFruit);
+  const sanitizedArray = fruitsArray.filter (fruitArray => fruitArray !== unwantedFruit );
   return sanitizedArray;
 }
 
