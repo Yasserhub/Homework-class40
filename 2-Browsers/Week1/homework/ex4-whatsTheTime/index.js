@@ -8,22 +8,18 @@ Full description at: https://github.com/HackYourFuture/Homework/tree/main/2-Brow
 2. Have the function execute when it's loading in the browser.
 ------------------------------------------------------------------------------*/
 function addCurrentTime() {
- 
- // https://tecadmin.net/get-current-date-time-javascript/ 
+  // https://tecadmin.net/get-current-date-time-javascript/
   const today = new Date();
-  let   hour = today.getHours(),
-        minute = today.getMinutes(),
-        second = today.getSeconds();
+  let hour = today.getHours(),
+    minute = today.getMinutes(),
+    second = today.getSeconds();
 
-  if (minute < 10 ) minute ='0'+ minute;
-  if (hour < 10 ) hour ='0'+ hour; 
-  if (second < 10 ) second='0'+ second; 
-  const time = hour + ":" + minute + ":" + second;
-  console.log(time);
+  if (minute < 10) minute = '0' + minute;
+  if (hour < 10) hour = '0' + hour;
+  if (second < 10) second = '0' + second;
+  const time = hour + ':' + minute + ':' + second;
+  return time;
 }
 // // https://www.w3schools.com/jsref/met_win_setinterval.asp
 
- window.onload = () => setInterval(addCurrentTime, 1000);
-
-
-
+window.onload = () => setInterval(addCurrentTime, 1000);

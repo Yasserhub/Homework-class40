@@ -21,39 +21,38 @@ Full description at: https://github.com/HackYourFuture/Homework/tree/main/2-Brow
 
    https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif
 -----------------------------------------------------------------------------*/
-const catImag=document.querySelector('img');
-      catImag.style.cssText='left:0';
-let moveToLeft=0;
+const catImage = document.querySelector('img');
+catImage.style.cssText = 'left:0';
+let moveToLeft = 0;
+let timeoutID;
+let intervalID;
 
-const rect1 = catImag.getBoundingClientRect();
+const rect1 = catImage.getBoundingClientRect();
 const imageWidth = rect1['width'];
 
-const screenCenter=(screen.width/2)-imageWidth;
+const screenCenter = screen.width / 2 - imageWidth;
 
-
-function imageInCenter(){
-  
-   catImag.src="http://www.anniemation.com/clip_art/images/cat-walk.gif";
-  
- }
-     
-function catWalk() {
-     moveToLeft = moveToLeft+10; 
-      
-      if ( moveToLeft < screenCenter ){
-          catImag.style.left=moveToLeft+"px";
-
-      } else if ( (moveToLeft - screenCenter) < 10 ){
-         catImag.src = "https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif"; 
-         setTimeout(imageInCenter,5000);
-          
-      } else if (moveToLeft > screenCenter && moveToLeft < (screenCenter * 2) ){
-         catImag.style.left=moveToLeft+"px";
-
-      }else if(moveToLeft > (screenCenter * 2)){
-          catImag.style.left = 0 + "px";
-          moveToLeft = 0; 
-      } 
+function imageInCenter() {
+  catImage.src = 'http://www.anniemation.com/clip_art/images/cat-walk.gif';
+  clearTimeout(timeoutID);
+  intervalID = setInterval(catWalk, 100);
 }
-window.onload = () => setInterval(catWalk, 5000);
 
+function catWalk() {
+  moveToLeft = moveToLeft + 10;
+
+  if (moveToLeft < screenCenter) {
+    catImage.style.left = moveToLeft + 'px';
+  } else if (moveToLeft - screenCenter < 10) {
+    catImage.src =
+      'https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif';
+    clearInterval(intervalID);
+    timeoutID = setTimeout(imageInCenter, 5000);
+  } else if (moveToLeft > screenCenter && moveToLeft < screenCenter * 2) {
+    catImage.style.left = moveToLeft + 'px';
+  } else if (moveToLeft > screenCenter * 2) {
+    catImage.style.left = 0 + 'px';
+    moveToLeft = 0;
+  }
+}
+window.onload = () => (intervalID = setInterval(catWalk, 100));
