@@ -1,1 +1,18 @@
 /* add your styling here */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box; 
+}
+.selectStyling{
+    height: 3.5em;
+    width: 40%;
+    border-radius: 4px;
+    font-size: 1.1em;
+    color: white;
+    color: #2F2B85 ;
+}
+
+.selectStyling:hover { background-color: white; color: #2F2B85; }
+

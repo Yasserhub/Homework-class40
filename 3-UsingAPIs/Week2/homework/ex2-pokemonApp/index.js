@@ -22,18 +22,54 @@ Use async/await and try/catch to handle promises.
 Try and avoid using global variables. As much as possible, try and use function 
 parameters and return values to pass data back and forth.
 ------------------------------------------------------------------------------*/
-function fetchData(/* TODO parameter(s) go here */) {
-  // TODO complete this function
+async function fetchData(url) {
+  // return fetch(url)
+  //   .then((response) => response.json())
+  //   .catch((err) => console.error('[Fetch Error]:', err));
+
+  const response = await fetch(url);
+  return response.json();
 }
 
-function fetchAndPopulatePokemons(/* TODO parameter(s) go here */) {
-  // TODO complete this function
+async function fetchAndPopulatePokemons(url) {
+  try {
+    const response = await fetchData(url);
+    const creatingSelect = document.createElement('select');
+    creatingSelect.classList.add('selectStyling');
+    document.body.appendChild(creatingSelect);
+    for (const result of response) {
+      response.forEach;
+      const option = document.createElement('option');
+      option.value = result.url;
+      option.text = result.name;
+      creatingSelect.appendChild(option);
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-function fetchImage(/* TODO parameter(s) go here */) {
-  // TODO complete this function
+function fetchImage(data) {
+  const image = document.createElement('img');
+  image.src = data['img'];
+  document.body.appendChild(image);
+  console.log(data);
 }
 
-function main() {
-  // TODO complete this function
+async function main() {
+  fetchAndPopulatePokemons('https://xkcd.now.sh/?comic=latest');
+
+  // try {
+  //   const responseOfRequest = await fetchData(
+  //     'https://xkcd.now.sh/?comic=latest'
+  //   );
+  //   console.log(responseOfRequest);
+  //   renderImage(responseOfRequest);
+  // } catch (error) {
+  //   const errorInformation = `${error.message} - code: ${error.code} - status: ${error.status}`;
+  //   renderError(errorInformation);
+  //   console.error(error.status);
+  // }
 }
+
+window.addEventListener('load', main);

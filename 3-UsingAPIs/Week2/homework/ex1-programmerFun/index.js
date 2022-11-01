@@ -17,29 +17,50 @@ Full description at: https://github.com/HackYourFuture/Homework/blob/main/3-Usin
    url with `.shx`. There is no server at the modified url, therefore this 
    should result in a network (DNS) error.
 ------------------------------------------------------------------------------*/
-function requestData(url) {
-  // TODO return a promise using `fetch()`
+async function requestData(url) {
+  const response = await fetch(url);
+  const json = await response.json();
+  return json;
+
+  // fetch(url)
+  // .then(response => {
+  //   if (response.ok) {
+  //     return response.json();
+  //   } else {
+  //     // // Either one will work:
+  //     // throw new Error(response.status);
+  //     // // OR
+  //     return Promise.reject(response.status);
+  //   }
+  // })
 }
 
 function renderImage(data) {
-  // TODO render the image to the DOM
+  const image = document.createElement('img');
+  image.src = data['img'];
+  document.body.appendChild(image);
   console.log(data);
 }
 
 function renderError(error) {
-  // TODO render the error to the DOM
-  console.log(error);
+  const h1 = document.createElement('H1');
+  const textNode = document.createTextNode(error);
+  h1.appendChild(textNode);
+  document.body.appendChild(h1);
 }
 
-// TODO refactor with async/await and try/catch
-function main() {
-  requestData('https://xkcd.now.sh/?comic=latest')
-    .then((data) => {
-      renderImage(data);
-    })
-    .catch((error) => {
-      renderError(error);
-    });
+async function main() {
+  try {
+    const responseOfRequest = await requestData(
+      'https://xkcd.now.sh/?comic=latest'
+    );
+    console.log(responseOfRequest);
+    renderImage(responseOfRequest);
+  } catch (error) {
+    const errorInformation = `${error.message} - code: ${error.code} - status: ${error.status}`;
+    renderError(errorInformation);
+    console.error(error.status);
+  }
 }
 
 window.addEventListener('load', main);

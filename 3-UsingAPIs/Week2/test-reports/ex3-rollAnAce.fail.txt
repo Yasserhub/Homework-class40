@@ -1,0 +1,8 @@
+
+*** ESLint Report ***
+
+ex3-rollAnAce.js
+  22:3  warning  Remove commented-out code  hyf/no-commented-out-code
+
+✖ 1 problem (0 errors, 1 warning)
+
