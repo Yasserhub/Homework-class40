@@ -15,10 +15,8 @@ const rollDie = require('../../helpers/pokerDiceRoller');
 
 function rollDice() {
   const dice = [1, 2, 3, 4, 5];
-
-  const promises = dice.map((number) => rollDice(number));
-  const firstBackPromise = Promise.race(promises);
-  return firstBackPromise;
+  const promises = dice.map(rollDie);
+  return Promise.race(promises);
 }
 
 async function main() {

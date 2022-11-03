@@ -23,53 +23,77 @@ Try and avoid using global variables. As much as possible, try and use function
 parameters and return values to pass data back and forth.
 ------------------------------------------------------------------------------*/
 async function fetchData(url) {
-  // return fetch(url)
-  //   .then((response) => response.json())
-  //   .catch((err) => console.error('[Fetch Error]:', err));
-
-  const response = await fetch(url);
-  return response.json();
-}
-
-async function fetchAndPopulatePokemons(url) {
   try {
-    const response = await fetchData(url);
-    const creatingSelect = document.createElement('select');
-    creatingSelect.classList.add('selectStyling');
-    document.body.appendChild(creatingSelect);
-    for (const result of response) {
-      response.forEach;
-      const option = document.createElement('option');
-      option.value = result.url;
-      option.text = result.name;
-      creatingSelect.appendChild(option);
+    const response = await fetch(url);
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error(`HTTP error, status= ${response.status}`);
     }
   } catch (error) {
     console.error(error);
   }
 }
 
-function fetchImage(data) {
+function listPokemonsNames(pokemonData) {
+  const select = document.getElementById('selectId');
+  for (const element of pokemonData.results) {
+    const option = document.createElement('option');
+    option.value = element.url;
+    option.text = element.name;
+    select.appendChild(option);
+  }
+  select.addEventListener('change', () => {
+    fetchImage(select.value);
+  });
+}
+
+async function fetchAndPopulatePokemons(url) {
+  try {
+    const pokemonData = await fetchData(url);
+    const btn = document.createElement('button');
+    btn.classList.add('btnStyling');
+    btn.textContent = 'Get Pokemon';
+
+    const creatingSelect = document.createElement('select');
+    creatingSelect.classList.add('selectStyling');
+    creatingSelect.id = 'selectId';
+    document.body.appendChild(creatingSelect);
+
+    btn.addEventListener('click', () => {
+      listPokemonsNames(pokemonData);
+    });
+
+    document.body.appendChild(btn);
+
+    const container = document.createElement('div');
+    container.id = 'containerId';
+    document.body.appendChild(container);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function fetchImage(data) {
+  const fetchingImage = await fetchData(data);
   const image = document.createElement('img');
-  image.src = data['img'];
-  document.body.appendChild(image);
-  console.log(data);
+  image.src = fetchingImage.sprites.back_default;
+  image.alt = fetchingImage.name;
+  image.classList.add('imageStyling');
+
+  const divContainer = document.getElementById('containerId');
+  divContainer.textContent = '';
+  divContainer.appendChild(image);
 }
 
 async function main() {
-  fetchAndPopulatePokemons('https://xkcd.now.sh/?comic=latest');
-
-  // try {
-  //   const responseOfRequest = await fetchData(
-  //     'https://xkcd.now.sh/?comic=latest'
-  //   );
-  //   console.log(responseOfRequest);
-  //   renderImage(responseOfRequest);
-  // } catch (error) {
-  //   const errorInformation = `${error.message} - code: ${error.code} - status: ${error.status}`;
-  //   renderError(errorInformation);
-  //   console.error(error.status);
-  // }
+  try {
+    return fetchAndPopulatePokemons(
+      'https://pokeapi.co/api/v2/pokemon?limit=151'
+    );
+  } catch (error) {
+    console.error(error.status);
+  }
 }
 
 window.addEventListener('load', main);

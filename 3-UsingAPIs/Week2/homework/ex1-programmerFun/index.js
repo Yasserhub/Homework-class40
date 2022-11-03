@@ -21,23 +21,12 @@ async function requestData(url) {
   const response = await fetch(url);
   const json = await response.json();
   return json;
-
-  // fetch(url)
-  // .then(response => {
-  //   if (response.ok) {
-  //     return response.json();
-  //   } else {
-  //     // // Either one will work:
-  //     // throw new Error(response.status);
-  //     // // OR
-  //     return Promise.reject(response.status);
-  //   }
-  // })
 }
 
 function renderImage(data) {
   const image = document.createElement('img');
   image.src = data['img'];
+  image.alt = data['alt'];
   document.body.appendChild(image);
   console.log(data);
 }
